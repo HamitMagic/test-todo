@@ -1,0 +1,184 @@
+:root {
+    display: flex;
+    justify-content: center;
+    /* box-sizing: border-box; */
+}
+.main-container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    gap: 24px;
+    border: 1px solid gray;
+    border-radius: 12px;
+    padding: 8px;
+}
+fieldset {
+    border: 1px solid gray;
+    border-radius: 8px;
+    padding: 8px;
+    height: 100%;
+}
+input[type='checkbox'] {
+    transform:scale(1.5);
+    opacity:0.9;
+    border: 1px solid gray;
+}
+
+input {
+    border-radius: 4px;
+    /* box-sizing: border-box; */
+    height: 32px;
+    border: 1px solid gray;
+    box-sizing: border-box;
+
+    /* color: #f1f1f1; */
+    /* background-color: #213547; */
+}
+/* input:focus {
+    border: 1px solid#51a563;
+    box-sizing: border-box;
+}
+input:active {
+    border: 1px solid#51a563;
+    box-sizing: border-box;
+} */
+form {
+    gap: 12px;
+    display: flex;
+    flex-flow: column nowrap;    
+}
+.selected {
+    background-color: #51a563;
+}
+
+.custom-checkbox>input, .toggle-checkbox>input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.custom-checkbox>span, .toggle-checkbox>span {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+}
+
+.custom-checkbox>span::before,
+.toggle-checkbox>span::before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid #31633c;
+    border-radius: 0.25em;
+    margin-right: 0.5em;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+}
+
+.toggle-checkbox>span::before{
+    width: 2.5em;
+    border-radius: 1.25em;
+    background-color: #31633c;
+}
+
+/* стили при наведении курсора на checkbox */
+.custom-checkbox > input:not(:checked)+span:hover::before,
+.toggle-checkbox > input:not(:checked)+span:hover::before {
+    border-color: #51a563;
+}
+.toggle-checkbox > input:not(:checked)+span:hover::before{
+    background-color: #51a563;
+}
+
+/* стили для чекбокса, находящегося в состоянии checked (при наведении на него) */
+.custom-checkbox > input:checked+span:hover::before,
+.toggle-checkbox > input:checked+span:hover::before {
+    border-color: #51a563;
+    background-color: #51a563;
+}
+.toggle-checkbox > input:checked+span::before {
+    left: calc(100% - 5px);
+	transform: translateX(-100%);
+}
+
+/* стили для чекбокса, находящегося в состоянии checked */
+.custom-checkbox>input:checked+span::before {
+    border-color: #3d8a4e;
+    background-color: #3d8a4e;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+}
+
+.age-buttons {
+    display: flex;
+    font-size: 30px;
+    position: absolute;
+    right: 0;
+    top: 11px;
+}
+.age-button {
+    transform: rotate(90deg);
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+}
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    width: 100%;
+  }
+.age-container {
+    position: relative;
+}
+.age-buttons-wrapper {
+    position: absolute;
+    right: 4px;
+    top: -2px;
+}
+
+button:hover {
+    background-color: #7a7a7a;
+    cursor: pointer;
+}
+.input-wrapper, .age-wrapper {
+    position: relative;
+}
+#show-options, #increase-age, #decrease-age {
+    position: absolute;
+    top: 8px;
+    right: 0;
+    background-color: buttonface;
+    transform: rotate(90deg);
+    border-radius: 4px;
+    cursor: pointer;
+    width: 23px;
+    height: 16px;
+    text-align: center;
+}
+#decrease-age {
+    right: 18px;
+}
+
+.users {
+    display: flex;
+    /* margin: 8px; */
+}
+.users>span {
+    padding: 4px;
+    background-color: lightgray;
+    text-align: center;
+}
+.input:hover {
+    border-color: black;
+}
+.input:focus-visible {  /* не понимаю почему не работает */
+    border: 1px solid #51a563;
+}
+.input:focus {
+    box-shadow: inset 0 1px 1px rgba(50, 200, 150, 0.75), 0 0 8px rgba(98, 209, 98, 0.6);
+}
