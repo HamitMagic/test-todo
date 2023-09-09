@@ -7,6 +7,7 @@ function UserList() {
         <fieldset>
             <legend>Users</legend>
             <div className='users'>
+                <span>№</span>
                 <span>Name</span>
                 <span>Age</span>
                 <span>Subscription</span>

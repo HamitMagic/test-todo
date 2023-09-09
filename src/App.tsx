@@ -1,22 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.css'
 import Menu from './components/Menu'
 import UserList from './components/UserList'
-import { useGlobalContext, GlobalContext } from './contextStore/GlobalContext';
+import { Context, GlobalData } from './contextStore/GlobalContext';
 
 function App() {
-  const {theme, users} = useGlobalContext();
+  const [data, setData] = useState(GlobalData)
 
   return (
-    <GlobalContext.Provider value={{theme, users, addUser(){},}} >
-      <div className='main-container'>
-        <fieldset className='menu-container' >
-          <legend>Insert Row</legend>
-          <Menu />
-        </fieldset>
-        <UserList />
-      </div>
-    </GlobalContext.Provider>
+    <Context.Provider value={{data, setData}} >
+        <div className='main-container'>
+          <fieldset className='menu-container' >
+            <legend>Insert Row</legend>
+            <Menu />
+          </fieldset>
+          <UserList />
+        </div>
+    </Context.Provider>
   );
 }
 

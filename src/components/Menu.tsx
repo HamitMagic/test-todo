@@ -1,22 +1,31 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import MyForm from './MyForm';
-import { useGlobalContext } from '../contextStore/GlobalContext';
+import { Context } from '../contextStore/GlobalContext';
 
 function Menu() {
-    const {theme} = useGlobalContext();
-    
-    function deleteUser(event: React.MouseEvent) {
-        event.preventDefault();
-        event.stopPropagation();
+   const {data, setData} = useContext(Context)
+
+    function changeMode() {
+        const newData = structuredClone(data);
+        newData.theme.isDark = !data.theme.isDark;
+        setData(newData);
     }
-   
+
+    function deleteUser() {
+        console.log(data.users)
+        const newData = structuredClone(data);
+        console.log(newData.users)
+        const newUsers = data.users.filter(user => user.isSelected === false);
+        setData({...data, users: newUsers});
+    }
+
     return (
         <div>
             <MyForm />
             <div>
                 <hr />
             </div>
-            <label onClick={() => theme.setDarkTheme(!theme.isDark)} className='toggle-checkbox' >
+            <label onClick={changeMode} className='toggle-checkbox' >
                 <input type='checkbox' />
                 <span className='slider round'>Mode</span>
             </label>
