@@ -35,12 +35,12 @@ function App() {
     }
   });
   
-  const mode = data.theme.isLight ? '' : '-light';
-
+  const mode = data.theme.isLight ? '-light' : '-black';
+  const color = data.theme.isLight ? '#ccc' : '#333';
   return (
     <Context.Provider value={{data, setData}} >
-        <div className={`main-container${mode}`} >
-          <fieldset className={`left-container${mode}`} >
+        <div className={`main-container${mode}`} style={{backgroundColor: color}} >
+          <fieldset className={`fieldset${mode}`} >
             <legend>Insert Row</legend>
             <LeftPanel />
           </fieldset>

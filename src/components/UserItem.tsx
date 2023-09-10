@@ -23,7 +23,7 @@ function UserItem() {
     }
 
     return (
-        <div className={'users-list' + mode} >
+        <div className={`users-list${mode}`} >
             {data.users.map((user, count=1) => (
                 <div key={user.id} onClick={selectUser} id={String(user.id)} className={user.isSelected? `selected${mode}` : `notSelected${mode}`} >
                     <span>{++count}</span>

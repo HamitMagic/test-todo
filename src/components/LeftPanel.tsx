@@ -29,12 +29,12 @@ function LeftPanel() {
             <div>
                 <hr />
             </div>
-            <label onClick={changeMode} className={`toggle-checkbox${mode}`} >
+            <label onClick={changeMode} className={`toggle-checkbox`} >
                 <input ref={checkBoxRef} type={'checkbox'} defaultChecked={data.theme.isLight} />
-                <span className={`slider${mode}`}></span>
+                <span className={`slider`}></span>
                 <span>Mode</span>
             </label>
-            <button onClick={deleteUser}>Delete</button>
+            <button className={`button${mode}`} onClick={deleteUser}>Delete</button>
         </div>
     );
 }

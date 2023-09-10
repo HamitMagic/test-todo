@@ -98,7 +98,7 @@ function MyForm() {
     }
 
     return (
-        <form name='form' onSubmit={handleFormSubmit}>
+        <form name='form' className={`form${mode}`} onSubmit={handleFormSubmit}>
             <input className={`input${mode}`} onChange={ValidateName} type='text' value={name} placeholder='Name'/>
             <div className={`age-wrapper${mode}`}>
                 <input ref={inputAgeRef} className={`input${mode}`} onChange={validateAge} onKeyDown={validateAge} type='text' value={userAge} />
@@ -114,13 +114,13 @@ function MyForm() {
                     aria-autocomplete="list"
                     type='text' 
                 />
-                <span id='show-options'>{'>'}</span>
+                <span id={`show-options${mode}`}>{'>'}</span>
             </div>
-            <label  className={`custom-checkbox${mode}`}>
-                <input ref={employmentRef} name='form' id='employed' type='checkbox'/>
+            <label  className={`custom-checkbox`}>
+                <input ref={employmentRef} name='form' id={`employed${mode}`} type='checkbox'/>
                 <span>Employed</span>
             </label>
-            <button type='submit'>Insert</button>
+            <button className={`button${mode}`} type='submit'>Insert</button>
         </form>
     );
 }

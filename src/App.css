@@ -1,9 +1,5 @@
-:root {
-    display: flex;
-    justify-content: center;
-    background-color: rgb(228, 228, 228);
-    /* box-sizing: border-box; */
-}
+
+
 .main-container-light {
     display: flex;
     flex-flow: row nowrap;
@@ -12,8 +8,9 @@
     border: 1px solid gray;
     border-radius: 12px;
     padding: 8px;
+    color:rgb(57, 57, 57);
 }
-.input-light[type='checkbox'] {
+.input-light[type='checkbox'], .input-black[type='checkbox'] {
     transform:scale(1.5);
     opacity:0.9;
     border: 1px solid gray;
@@ -21,38 +18,35 @@
 
 .input-light {
     border-radius: 4px;
-    /* box-sizing: border-box; */
     height: 32px;
     border: 1px solid gray;
     box-sizing: border-box;
+    background-color: rgb(200, 200, 200);
+    color: rgb(57, 57, 57);
 }
-.input-light:active {
-    border: 1px solid#51a563;
-    box-sizing: border-box;
-} */
-form.light {
+form {
     gap: 12px;
     display: flex;
     flex-flow: column nowrap;    
 }
-.selected-light {
+.selected-light, .selected-black {
     background-color: #51a563;
 }
 
-.custom-checkbox-light>input, .toggle-checkbox-light>input {
+.custom-checkbox>input, .toggle-checkbox>input {
     position: absolute;
     z-index: -1;
     opacity: 0;
 }
 
-.custom-checkbox-light>span, .toggle-checkbox-light>.slider {
+.custom-checkbox>span, .toggle-checkbox>.slider {
     display: inline-flex;
     align-items: center;
     user-select: none;
 }
 
-.custom-checkbox-light>span::before,
-.toggle-checkbox-light>.slider::before {
+.custom-checkbox>span::before,
+.toggle-checkbox>.slider::before {
     content: '';
     display: inline-block;
     width: 1em;
@@ -67,56 +61,42 @@ form.light {
     background-size: 50% 50%;
 }
 
-.toggle-checkbox-light>.slider::before{
+.toggle-checkbox>.slider::before {
     width: 0.8em;
     height: 0.8em;
     border-radius: 50%;
     background-color: #31633c;
-
 }
 
 /* стили при наведении курсора на checkbox */
-.custom-checkbox-light > input:not(:checked)+span:hover::before,
-.toggle-checkbox-light > input:not(:checked)+.slider::before {
+.custom-checkbox > input:not(:checked)+span:hover::before,
+.toggle-checkbox > input:not(:checked)+.slider::before {
     border-color: #51a563;
 }
 
 /* стили для чекбокса, находящегося в состоянии checked (при наведении на него) */
-.custom-checkbox-light > input:checked+span:hover::before,
-.toggle-checkbox-light > input:checked+.slider:hover::before {
+.custom-checkbox > input:checked+span:hover::before,
+.toggle-checkbox > input:checked+.slider:hover::before {
     border-color: #51a563;
     background-color: #51a563;
 }
-.toggle-checkbox-light > input:checked+span::before {
+.toggle-checkbox > input:checked+span::before {
     left: calc(100% - 5px);
 	transform: translateX(+145%);
 }
-.toggle-checkbox-light {
+.toggle-checkbox {
     align-items: center;
     display: flex;
 }
 
 /* стили для чекбокса, находящегося в состоянии checked */
-.custom-checkbox-light > input:checked+span::before {
+.custom-checkbox > input:checked+span::before {
     border-color: #3d8a4e;
     background-color: #3d8a4e;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
 }
 
-.age-buttons-light {
-    display: flex;
-    font-size: 30px;
-    position: absolute;
-    right: 0;
-    top: 11px;
-}
-.age-button-light {
-    transform: rotate(90deg);
-    text-align: center;
-    border: none;
-    border-radius: 4px;
-}
-button.light {
+button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -132,14 +112,14 @@ button.light {
     right: 4px;
     top: -2px;
 }
-.slider-light {
+.slider {
     width: 36px;
     border: 1px solid;
     border-radius: 16px;
     padding: 1px;
     margin-right: 8px;
 }
-button.light:hover {
+.button-light:hover {
     background-color: #7a7a7a;
     cursor: pointer;
 }
@@ -175,7 +155,6 @@ button.light:hover {
 .users-list-light > div > span {
     text-align: start;
     border: 1px solid;
-    /* box-sizing: border-box; */
 
 }
 .notSelected-light, .selected-light {
@@ -196,15 +175,7 @@ button.light:hover {
 
 
 
-
-
-:root {
-    display: flex;
-    justify-content: center;
-    /* background-color: rgb(51, 51, 51); */
-    /* box-sizing: border-box; */
-}
-.main-container {
+.main-container-black {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
@@ -214,21 +185,9 @@ button.light:hover {
     padding: 8px;
     color:rgb(209, 209, 209);
 }
-fieldset {
-    border: 1px solid gray;
-    border-radius: 8px;
-    padding: 8px;
-    height: 100%;
-}
-input[type='checkbox'] {
-    transform:scale(1.5);
-    opacity:0.9;
-    border: 1px solid gray;
-}
 
-input {
+.input-black {
     border-radius: 4px;
-    /* box-sizing: border-box; */
     height: 32px;
     border: 1px solid gray;
     box-sizing: border-box;
@@ -236,127 +195,28 @@ input {
     color: rgb(192, 192, 192);
 
 }
-form {
-    gap: 12px;
-    display: flex;
-    flex-flow: column nowrap;    
-}
-.selected {
-    background-color: #51a563;
-}
-
-.custom-checkbox>input, .toggle-checkbox>input {
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-}
-
-.custom-checkbox>span, .toggle-checkbox>.slider {
+.custom-checkbox-black>span, .toggle-checkbox-black>.slider {
     display: inline-flex;
     align-items: center;
     user-select: none;
 }
 
-.custom-checkbox>span::before,
-.toggle-checkbox>.slider::before {
-    content: '';
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    flex-shrink: 0;
-    flex-grow: 0;
-    border: 1px solid #31633c;
-    border-radius: 0.25em;
-    margin-right: 0.5em;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 50% 50%;
-}
-
-.toggle-checkbox>.slider::before{
-    width: 0.8em;
-    height: 0.8em;
-    border-radius: 50%;
-    background-color: #31633c;
-
-}
-
-/* стили при наведении курсора на checkbox */
-.custom-checkbox > input:not(:checked)+span:hover::before,
-.toggle-checkbox > input:not(:checked)+.slider::before {
-    border-color: #51a563;
-}
-
-/* стили для чекбокса, находящегося в состоянии checked (при наведении на него) */
-.custom-checkbox > input:checked+span:hover::before,
-.toggle-checkbox > input:checked+.slider:hover::before {
-    border-color: #51a563;
-    background-color: #51a563;
-}
-.toggle-checkbox > input:checked+span::before {
-    left: calc(100% - 5px);
-	transform: translateX(+145%);
-}
-.toggle-checkbox {
-    align-items: center;
-    display: flex;
-}
-
-/* стили для чекбокса, находящегося в состоянии checked */
-.custom-checkbox>input:checked+span::before {
-    border-color: #3d8a4e;
-    background-color: #3d8a4e;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
-}
-/* .slider-wrapper {
-    display: flex;
-    align-items: center;
-} */
-
-.age-buttons {
-    display: flex;
-    font-size: 30px;
-    position: absolute;
-    right: 0;
-    top: 11px;
-}
-.age-button {
-    transform: rotate(90deg);
-    text-align: center;
-    border: none;
-    border-radius: 4px;
-}
-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    width: 100%;
-    margin-top: 8px;
-  }
-.age-container {
+.age-container-black {
     position: relative;
 }
-.age-buttons-wrapper {
+.age-buttons-wrapper-black {
     position: absolute;
     right: 4px;
     top: -2px;
 }
-.slider {
-    width: 36px;
-    border: 1px solid;
-    border-radius: 16px;
-    padding: 1px;
-    margin-right: 8px;
-}
-button:hover {
+.button-black:hover {
     background-color: #7a7a7a;
     cursor: pointer;
 }
-.input-wrapper, .age-wrapper {
+.input-wrapper-black, .age-wrapper-black {
     position: relative;
 }
-#show-options, #increase-age, #decrease-age {
+#show-options-black, #increase-age-black, #decrease-age-black {
     position: absolute;
     top: 8px;
     right: 0;
@@ -368,42 +228,37 @@ button:hover {
     height: 16px;
     text-align: center;
 }
-#decrease-age {
+#decrease-age-black {
     right: 18px;
 }
 
-.users {
+.users-black {
     display: flex;
     justify-content: space-between;
     background-color: rgb(129, 129, 129);
-
-    /* flex-flow: column nowrap; */
-    /* margin: 8px; */
 }
-.users>span, .users-list>div>span {
+.users-black>span, .users-list-black>div>span {
     width: 150px;
     padding: 4px;
     text-align: center;
 }
-.users-list>div>span {
+.users-list-black>div>span {
     text-align: start;
     border: 1px solid;
-    /* box-sizing: border-box; */
 
 }
-.notSelected, .selected {
+.notSelected-black, .selected-black {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
 }
-.input:hover {
+.input-black:hover {
     border: 1px solid rgb(107, 168, 91);
 }
-.input:focus:focus-visible {  /* не понимаю почему не работает */
+.input-black:focus:focus-visible {  /* не понимаю почему не работает */
     border-color: #51a563;
 }
-button {
+.button-black {
     background-color: black;
     color: antiquewhite;
 }
-

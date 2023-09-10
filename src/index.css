@@ -1,0 +1,17 @@
+:root {
+    display: flex;
+    justify-content: center;
+}
+
+fieldset {
+    border: 1px solid gray;
+    border-radius: 8px;
+    padding: 8px;
+    height: 100%;
+}
+.age-button {
+    transform: rotate(90deg);
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+}
