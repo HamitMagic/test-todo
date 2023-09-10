@@ -1,18 +1,48 @@
 import React, { useState } from 'react'
 import './App.css'
-import Menu from './components/Menu'
+import LeftPanel from './components/LeftPanel'
 import UserList from './components/UserList'
-import { Context, GlobalData } from './contextStore/GlobalContext';
+import { Context, IDefaultGlobalData } from './contextStore/GlobalContext';
+
+
+function getData() {
+  try {
+      const localData: string | null = localStorage.getItem('localData');
+      const data: IDefaultGlobalData = JSON.parse(localData);
+      if (data) return data as IDefaultGlobalData;
+      else return null;
+  } catch (error) {
+      console.log('ошибка получения данных и базы')
+  }
+}
 
 function App() {
-  const [data, setData] = useState(GlobalData)
+  const [data, setData] = useState(() => {
+    return getData() || {
+      theme: {
+        isLight: false,
+      },
+      users: [
+        {
+          isSelected: true,
+          id: Math.random()*1000000,
+          name: 'Mr. Anderson',
+          age: '55',
+          subscribtion: 'Subscribed',
+          employment: true,
+        },
+      ],
+    }
+  });
+  
+  const mode = data.theme.isLight ? '' : '-light';
 
   return (
     <Context.Provider value={{data, setData}} >
-        <div className='main-container'>
-          <fieldset className='menu-container' >
+        <div className={`main-container${mode}`} >
+          <fieldset className={`left-container${mode}`} >
             <legend>Insert Row</legend>
-            <Menu />
+            <LeftPanel />
           </fieldset>
           <UserList />
         </div>

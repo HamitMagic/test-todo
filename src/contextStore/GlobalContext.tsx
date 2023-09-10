@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 export interface Itheme {
-    isDark: boolean,
+    isLight: boolean,
 }
 export interface Iuser {
     isSelected: boolean,
@@ -15,9 +15,10 @@ export interface IDefaultGlobalData {
     theme: Itheme,
     users: Iuser[],
 }
-export const GlobalData = { 
+
+export const DefaultGlobalData = { 
     theme: {
-        isDark: false,
+        isLight: false,
     },
     users: [
         {
@@ -36,7 +37,7 @@ interface IDefaultContext {
     setData: React.Dispatch<React.SetStateAction<IDefaultGlobalData>>
 }
 export const defaultContext = {
-    data: GlobalData,
+    data: DefaultGlobalData,
     setData: () => {},
 }
 

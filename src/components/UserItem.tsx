@@ -1,44 +1,31 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Context } from '../contextStore/GlobalContext';
+import { setToLocalStore } from '../assets/functions';
 
 function UserItem() {
     const { data, setData } = useContext(Context);
+    const mode = data.theme.isLight ? '-light' : '-black';
 
+    function editUser(element: HTMLElement) {
+        const newUsers = data.users.map(user => {
+            if (user.id === +element.id) user.isSelected = true;
+            else user.isSelected = false;
+            return user;
+        })
+        data.users = newUsers;
+        setData({...data});
+        setToLocalStore({...data});
+    }
     function selectUser(event: React.MouseEvent) {
         event.preventDefault();
         event.stopPropagation();
-        function editUser(element: HTMLElement) {
-            element.className = 'selected';
-            const newUsers = data.users.map(user => {
-                if (user.id === +element.id) user.isSelected = true;
-                else user.isSelected = false;
-                return user;
-            })
-            data.users = newUsers;
-            setData(data);
-        }
-
-        for (const node of event.currentTarget.childNodes) {
-            let element = node as HTMLDivElement
-            if (node === event.target) {
-                editUser(element)
-                break;
-            } else element.className = 'notSelected';
-
-            for (const spanElement of node.childNodes) {
-                element = spanElement.parentElement as HTMLDivElement
-                if (spanElement === event.target) {
-                    editUser(element)
-                    break;
-                } else element.className = 'notSelected'
-            }
-        }
+        editUser(event.currentTarget as HTMLDivElement);
     }
 
     return (
-        <div className="users-list" onClick={selectUser}>
+        <div className={'users-list' + mode} >
             {data.users.map((user, count=1) => (
-                <div key={user.id} id={String(user.id)} className={user.isSelected? 'selected' : 'notSelected'} >
+                <div key={user.id} onClick={selectUser} id={String(user.id)} className={user.isSelected? `selected${mode}` : `notSelected${mode}`} >
                     <span>{++count}</span>
                     <span>{user.name}</span>
                     <span>{user.age}</span>
