@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Context, Iuser,  } from '../contextStore/GlobalContext';
 import { setToLocalStore } from '../assets/functions';
 import { ARROWS, EVENTS } from '../assets/consts';
@@ -12,8 +12,21 @@ function MyForm() {
     const employmentRef = useRef<HTMLInputElement | null>(null);
     const { data, setData } = useContext(Context);
     const [maxAge, minAge, minNameLength] = [100, 18, 3];
+    const [isOpen, setIsOpen] = useState(false);
     const mode = data.theme.isLight ? '-light' : '-black';
-    // const options = ['Subscribed', 'Not Subscribed', 'Other'];
+
+    useEffect(() => {
+        if (data.selectedUser) {
+            setName(data.selectedUser.name);
+            setUserAge(data.selectedUser?.age);
+            setSubscribe(data.selectedUser?.subscribtion);
+            console.log(data.selectedUser)
+        } else {
+            setName('');
+            setUserAge('Age');
+            setSubscribe('Subscribed');
+        }
+    }, [data]);
 
     function handleChange(element: HTMLInputElement) {
         const currentAge = element.value;
@@ -80,11 +93,24 @@ function MyForm() {
             subscribtion: subscribe,
             employment: element.checked,
         };
-        newData.users.push(newUser);
+
+        if (data.selectedUser) {
+            newData.users = newData.users.map(user => {
+                if (user.id === data.selectedUser?.id) return newUser
+                return user;
+            })
+        }
+        else newData.users.push(newUser);
+        newData.selectedUser = null;
+        
+        
         if (name.length < minNameLength || Number.isNaN(Number(userAge)) || Number(userAge) < minAge || Number(userAge) > maxAge) {
             alert("вы не прошли проверку безопастности");
             return null;
         }
+        setName('');
+        setUserAge('Age');
+        setSubscribe('Subscribed');
         setData(newData)
         setToLocalStore(newData);
     }
@@ -97,15 +123,19 @@ function MyForm() {
         setName(element.value)
     }
 
+    function selectSubscribe(value: string) {
+        setIsOpen(false);
+        setSubscribe(value);
+    }
     return (
         <form name='form' className={`form${mode}`} onSubmit={handleFormSubmit}>
             <input className={`input${mode}`} onChange={ValidateName} type='text' value={name} placeholder='Name'/>
-            <div className={`age-wrapper${mode}`}>
+            <div className={`age-wrapper`}>
                 <input ref={inputAgeRef} className={`input${mode}`} onChange={validateAge} onKeyDown={validateAge} type='text' value={userAge} />
                 <span id={`decrease-age${mode}`} onClick={decrementAge} > {'>'} </span>
                 <span id={`increase-age${mode}`} onClick={incrementAge} > {'<'} </span>
             </div>
-            <div role="combobox" aria-haspopup="listbox" aria-expanded="false" className={`input-wrapper${mode}`}>
+            <div role="combobox" aria-haspopup="listbox" aria-expanded="false" className={`input-wrapper`}>
                 <input
                     className={`input${mode}`}
                     onChange={(event) => setSubscribe(event.target.value)}
@@ -114,13 +144,18 @@ function MyForm() {
                     aria-autocomplete="list"
                     type='text' 
                 />
-                <span id={`show-options${mode}`}>{'>'}</span>
+                <span onClick={() => setIsOpen(!isOpen)} id={`show-options${mode}`}>{ isOpen ? '<' : '>'}</span>
+                {isOpen && <div className='options-wrapper'>
+                    <span onClick={() => selectSubscribe('Subscribed')} >Subscribed</span>    
+                    <span onClick={() => selectSubscribe('Not Subscribed')} >Not Subscribed</span>    
+                    <span onClick={() => selectSubscribe('Other')}>Other</span>    
+                </div>}
             </div>
             <label  className={`custom-checkbox`}>
-                <input ref={employmentRef} name='form' id={`employed${mode}`} type='checkbox'/>
+                <input ref={employmentRef} name='form' id={`employed${mode}`} type='checkbox' />
                 <span>Employed</span>
             </label>
-            <button className={`button${mode}`} type='submit'>Insert</button>
+            <button className={`button${mode}`} type='submit'>{data.selectedUser ? `Modify` : `Insert`}</button>
         </form>
     );
 }

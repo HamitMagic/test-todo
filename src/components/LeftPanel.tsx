@@ -18,9 +18,10 @@ function LeftPanel() {
     }
 
     function deleteUser() {
+        if (!data.selectedUser) return null;
         const newUsers = data.users.filter(user => user.isSelected === false);
-        setData({...data, users: newUsers});
-        setToLocalStore({...data, users: newUsers});
+        setData({...data, users: newUsers, selectedUser: null});
+        setToLocalStore({...data, users: newUsers, selectedUser: null});
     }
 
     return (
@@ -30,7 +31,7 @@ function LeftPanel() {
                 <hr />
             </div>
             <label onClick={changeMode} className={`toggle-checkbox`} >
-                <input ref={checkBoxRef} type={'checkbox'} defaultChecked={data.theme.isLight} />
+                <input ref={checkBoxRef} type={'checkbox'} defaultChecked={!data.theme.isLight} />
                 <span className={`slider`}></span>
                 <span>Mode</span>
             </label>

@@ -14,6 +14,7 @@ export interface Iuser {
 export interface IDefaultGlobalData {
     theme: Itheme,
     users: Iuser[],
+    selectedUser: Iuser | null,
 }
 
 export const DefaultGlobalData = { 
@@ -30,6 +31,7 @@ export const DefaultGlobalData = {
             employment: false,
         },
     ],
+    selectedUser: null,
 };
 
 interface IDefaultContext {

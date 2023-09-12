@@ -1,6 +1,12 @@
 :root {
     display: flex;
     justify-content: center;
+    --button-backgroun-color-hover: #7a7a7a;
+    --button-backgroun-color-black: #000;
+    --button-text-color-black: ;
+    --button-backgroun-color-light: #7a7a7a;
+    --button-text-color-light: ;
+    --special-button-background-color: #7a7a7a;
 }
 
 fieldset {
@@ -14,4 +20,25 @@ fieldset {
     text-align: center;
     border: none;
     border-radius: 4px;
+}
+.slider {
+    width: 36px;
+    border: 1px solid;
+    border-radius: 16px;
+    padding: 1px;
+    margin-right: 8px;
+}
+.options-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    position: absolute;
+    background-color: #000;
+    color: gray;
+    width: 100%;
+}
+.options-wrapper > span {
+    cursor: pointer;
+}
+.input-wrapper, .age-wrapper {
+    position: relative;
 }

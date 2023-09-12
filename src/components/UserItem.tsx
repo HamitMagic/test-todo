@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Context } from '../contextStore/GlobalContext';
+import { Context, Iuser } from '../contextStore/GlobalContext';
 import { setToLocalStore } from '../assets/functions';
 
 function UserItem() {
@@ -7,14 +7,17 @@ function UserItem() {
     const mode = data.theme.isLight ? '-light' : '-black';
 
     function editUser(element: HTMLElement) {
-        const newUsers = data.users.map(user => {
-            if (user.id === +element.id) user.isSelected = true;
+        let selectedUser: Iuser | null = null;
+        const users = data.users.map((user) => {
+            if (user.id === +element.id) {
+                user.isSelected = true;
+                selectedUser = user;
+            }
             else user.isSelected = false;
             return user;
         })
-        data.users = newUsers;
-        setData({...data});
-        setToLocalStore({...data});
+        setData({...data, selectedUser, users});
+        setToLocalStore({...data, selectedUser, users});
     }
     function selectUser(event: React.MouseEvent) {
         event.preventDefault();
@@ -25,7 +28,7 @@ function UserItem() {
     return (
         <div className={`users-list${mode}`} >
             {data.users.map((user, count=1) => (
-                <div key={user.id} onClick={selectUser} id={String(user.id)} className={user.isSelected? `selected${mode}` : `notSelected${mode}`} >
+                <div key={user.id} onClick={selectUser} id={String(user.id)} className={user.isSelected ? `selected${mode}` : `notSelected${mode}`} >
                     <span>{++count}</span>
                     <span>{user.name}</span>
                     <span>{user.age}</span>
