@@ -8,7 +8,7 @@ import { Context, IDefaultGlobalData } from './contextStore/GlobalContext';
 function getData() {
   try {
       const localData: string | null = localStorage.getItem('localData');
-      const data: IDefaultGlobalData = JSON.parse(localData);
+      const data: IDefaultGlobalData = localData ? JSON.parse(localData) : null;
       if (data) return data as IDefaultGlobalData;
       else return null;
   } catch (error) {
@@ -16,7 +16,7 @@ function getData() {
   }
 }
 
-function App() {
+export default function App() {
   const [data, setData] = useState(() => {
     return getData() || {
       theme: {
@@ -24,7 +24,7 @@ function App() {
       },
       users: [
         {
-          isSelected: true,
+          isSelected: false,
           id: Math.random()*1000000,
           name: 'Mr. Anderson',
           age: '55',
@@ -32,22 +32,22 @@ function App() {
           employment: true,
         },
       ],
-    }
+    } as IDefaultGlobalData
   });
   
   const mode = data.theme.isLight ? '-light' : '-black';
   const color = data.theme.isLight ? '#ccc' : '#333';
   return (
-    <Context.Provider value={{data, setData}} >
-        <div className={`main-container${mode}`} style={{backgroundColor: color}} >
-          <fieldset className={`fieldset${mode}`} >
-            <legend>Insert Row</legend>
-            <LeftPanel />
-          </fieldset>
-          <UserList />
-        </div>
-    </Context.Provider>
-  );
+    <React.Fragment>
+      <Context.Provider value={{data, setData}} >
+          <div className={`main-container${mode}`} style={{backgroundColor: color}} >
+            <fieldset className={`fieldset${mode}`} >
+              <legend>Insert Row</legend>
+              <LeftPanel />
+            </fieldset>
+            <UserList />
+          </div>
+      </Context.Provider>
+    </React.Fragment>
+  )
 }
-
-export default App

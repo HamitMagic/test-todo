@@ -4,14 +4,14 @@ import { setToLocalStore } from '../assets/functions';
 
 function UserItem() {
     const { data, setData } = useContext(Context);
-    const mode = data.theme.isLight ? '-light' : '-black';
+    const mode = data?.theme.isLight ? '-light' : '-black';
 
     function editUser(element: HTMLElement) {
         let selectedUser: Iuser | null = null;
         const users = data.users.map((user) => {
             if (user.id === +element.id) {
-                user.isSelected = true;
-                selectedUser = user;
+                user.isSelected = !user.isSelected;
+                selectedUser = user.isSelected ? user : null;
             }
             else user.isSelected = false;
             return user;
@@ -20,8 +20,6 @@ function UserItem() {
         setToLocalStore({...data, selectedUser, users});
     }
     function selectUser(event: React.MouseEvent) {
-        event.preventDefault();
-        event.stopPropagation();
         editUser(event.currentTarget as HTMLDivElement);
     }
 

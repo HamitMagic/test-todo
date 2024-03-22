@@ -20,7 +20,6 @@ function MyForm() {
             setName(data.selectedUser.name);
             setUserAge(data.selectedUser?.age);
             setSubscribe(data.selectedUser?.subscribtion);
-            console.log(data.selectedUser)
         } else {
             setName('');
             setUserAge('Age');
@@ -52,7 +51,7 @@ function MyForm() {
         event.preventDefault();
         event.stopPropagation();
         let currentAge = element.value;
-            if (Number.isNaN(+currentAge)) return String(minAge);
+        if (Number.isNaN(+currentAge)) return String(minAge);
         currentAge = String(Number(element.value) + num);
         return String(Math.min(Math.max(+currentAge, minAge), maxAge));
     }

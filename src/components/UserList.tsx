@@ -7,6 +7,7 @@ function UserList() {
     const mode = data.theme.isLight ? '-light' : '-black';
 
     return (
+        <React.Fragment>
         <fieldset>
             <legend>Users</legend>
             <div className={`users${mode}`}>
@@ -18,6 +19,7 @@ function UserList() {
             </div>
             <UserItem />
         </fieldset>
+        </React.Fragment>
     );
 }
 
